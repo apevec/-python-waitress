@@ -1,12 +1,12 @@
 Name:           python-waitress
-Version:        0.8.4
+Version:        0.8.5
 Release:        1%{?dist}
 Summary:        Waitress WSGI server
 
 License:        ZPLv2.1
 URL:            https://github.com/Pylons/waitress
 Source0:        http://pypi.python.org/packages/source/w/waitress/waitress-%{version}.tar.gz
-#md5=d74ae9dbc269715541be8c39979ce9ba
+#md5=7a3094d812c0dffb948d1334ef5fd56f
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
@@ -98,6 +98,9 @@ popd
 
 
 %changelog
+* Wed Jul 31 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.5-1
+- Update to upstream
+
 * Sat Jul 6 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.4-1
 - Update to upstream
 - Added waitress-serve as a binary executable in /usr/bin
