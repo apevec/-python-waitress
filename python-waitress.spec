@@ -1,6 +1,8 @@
+%{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
+
 Name:           python-waitress
 Version:        0.8.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Waitress WSGI server
 
 License:        ZPLv2.1
@@ -22,7 +24,7 @@ in the Python standard library. It runs on CPython on Unix and Windows under
 Python 2.6+ and Python 3.2. It is also known to run on PyPy 1.6.0 on UNIX.
 It supports HTTP/1.0 and HTTP/1.1.
 
-For more information, see %{_docdir}/%{name}-%{version}/docs or
+For more information, see %{_pkgdocdir}/docs or
 http://docs.pylonsproject.org/projects/waitress/en/latest/ .
 
 %package -n python3-waitress
@@ -98,6 +100,11 @@ popd
 
 
 %changelog
+
+* Wed Aug 7 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.5-2
+- Update description to use the new Fedora 20 _pkgdocdir macro, which
+  is also defined for backwards cmompatibility
+
 * Wed Jul 31 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.5-1
 - Update to upstream
 
