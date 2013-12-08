@@ -2,7 +2,7 @@
 
 Name:           python-waitress
 Version:        0.8.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Waitress WSGI server
 
 License:        ZPLv2.1
@@ -66,11 +66,13 @@ pushd %{py3dir}
 popd
 
 %install
-%{__python} setup.py install --skip-build --root $RPM_BUILD_ROOT
-
+# Run the Python 3 install first so that the Python 2 version
+# of /usr/bin/waitress-server "wins":
 pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root $RPM_BUILD_ROOT
 popd
+
+%{__python} setup.py install --skip-build --root $RPM_BUILD_ROOT
 
 
 %check
@@ -85,7 +87,7 @@ pushd %{py3dir}
 PYTHONPATH=. %{__python3} setup.py test -q
 popd
 
- 
+
 %files
 %doc README.rst CHANGES.txt COPYRIGHT.txt LICENSE.txt docs
 %{_bindir}/waitress-serve
@@ -94,12 +96,14 @@ popd
 
 %files -n python3-waitress
 %doc README.rst CHANGES.txt COPYRIGHT.txt LICENSE.txt docs
-%{_bindir}/waitress-serve
 %{python3_sitelib}/waitress
 %{python3_sitelib}/waitress-%{version}-py3.?.egg-info
 
 
 %changelog
+
+* Sun Dec 8 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.5-3
+- Remove python3 dependency on the python-waitress python2 package
 
 * Wed Aug 7 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.5-2
 - Update description to use the new Fedora 20 _pkgdocdir macro, which
