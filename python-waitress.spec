@@ -1,14 +1,14 @@
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
 Name:           python-waitress
-Version:        0.8.5
-Release:        3%{?dist}
+Version:        0.8.8
+Release:        1%{?dist}
 Summary:        Waitress WSGI server
 
 License:        ZPLv2.1
 URL:            https://github.com/Pylons/waitress
 Source0:        http://pypi.python.org/packages/source/w/waitress/waitress-%{version}.tar.gz
-#md5=7a3094d812c0dffb948d1334ef5fd56f
+#md5=c0a40f34b5410348579556cd4a21c1c2
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
@@ -101,6 +101,9 @@ popd
 
 
 %changelog
+
+* Sun Dec 22 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.8-1
+- Update to upstream
 
 * Sun Dec 8 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.5-3
 - Remove python3 dependency on the python-waitress python2 package
