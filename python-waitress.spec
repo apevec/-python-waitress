@@ -1,14 +1,14 @@
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
 Name:           python-waitress
-Version:        0.8.8
-Release:        2%{?dist}
+Version:        0.8.9
+Release:        1%{?dist}
 Summary:        Waitress WSGI server
 
 License:        ZPLv2.1
 URL:            https://github.com/Pylons/waitress
 Source0:        http://pypi.python.org/packages/source/w/waitress/waitress-%{version}.tar.gz
-#md5=c0a40f34b5410348579556cd4a21c1c2
+#md5=da3f2e62b3676be5dd630703a68e2a04
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
@@ -101,9 +101,11 @@ popd
 
 
 %changelog
+* Sun May 25 2014 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.9-1
+- Update to upstream
+
 * Wed May 14 2014 Bohuslav Kabrda <bkabrda@redhat.com> - 0.8.8-2
 - Rebuilt for https://fedoraproject.org/wiki/Changes/Python_3.4
-
 
 * Sun Dec 22 2013 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.8-1
 - Update to upstream
