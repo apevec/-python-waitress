@@ -2,7 +2,7 @@
 
 Name:           python-waitress
 Version:        0.8.9
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Waitress WSGI server
 
 License:        ZPLv2.1
@@ -101,6 +101,9 @@ popd
 
 
 %changelog
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.9-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Sun May 25 2014 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.9-1
 - Update to upstream
 
