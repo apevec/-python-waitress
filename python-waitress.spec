@@ -102,7 +102,7 @@ popd
 
 %changelog
 
-* Sun Jun 14 2014 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.9-3
+* Sat Jun 14 2014 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.9-3
 - Run the tests with nose to avoid unclosed socket errors
 
 * Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.9-2
