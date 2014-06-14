@@ -2,7 +2,7 @@
 
 Name:           python-waitress
 Version:        0.8.9
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Waitress WSGI server
 
 License:        ZPLv2.1
@@ -81,10 +81,10 @@ popd
 # Usually the testsuite is run after installing
 # the package in develop mode but we can't install
 # in develop mode here.
-PYTHONPATH=. %{__python} setup.py test -q
+PYTHONPATH=. %{__python} setup.py nosetests
 
 pushd %{py3dir}
-PYTHONPATH=. %{__python3} setup.py test -q
+PYTHONPATH=. %{__python3} setup.py nosetests
 popd
 
 
@@ -101,6 +101,10 @@ popd
 
 
 %changelog
+
+* Sun Jun 14 2014 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.9-3
+- Run the tests with nose to avoid unclosed socket errors
+
 * Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.9-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
