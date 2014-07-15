@@ -2,7 +2,7 @@
 
 Name:           python-waitress
 Version:        0.8.9
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Waitress WSGI server
 
 License:        ZPLv2.1
@@ -44,7 +44,7 @@ in the Python standard library. It runs on CPython on Unix and Windows under
 Python 2.6+ and Python 3.2. It is also known to run on PyPy 1.6.0 on UNIX.
 It supports HTTP/1.0 and HTTP/1.1.
 
-For more information, see %{_docdir}/%{name}-%{version}/docs or
+For more information, see %{_pkgdocdir}/docs or
 http://docs.pylonsproject.org/projects/waitress/en/latest/ .
 
 %prep
@@ -59,7 +59,7 @@ cp -a . %{py3dir}
 
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
 pushd %{py3dir}
 %{__python3} setup.py build
@@ -72,7 +72,7 @@ pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root $RPM_BUILD_ROOT
 popd
 
-%{__python} setup.py install --skip-build --root $RPM_BUILD_ROOT
+%{__python2} setup.py install --skip-build --root $RPM_BUILD_ROOT
 
 
 %check
@@ -81,7 +81,7 @@ popd
 # Usually the testsuite is run after installing
 # the package in develop mode but we can't install
 # in develop mode here.
-PYTHONPATH=. %{__python} setup.py nosetests
+PYTHONPATH=. %{__python2} setup.py nosetests
 
 pushd %{py3dir}
 PYTHONPATH=. %{__python3} setup.py nosetests
@@ -91,8 +91,8 @@ popd
 %files
 %doc README.rst CHANGES.txt COPYRIGHT.txt LICENSE.txt docs
 %{_bindir}/waitress-serve
-%{python_sitelib}/waitress
-%{python_sitelib}/waitress-%{version}-py2.?.egg-info
+%{python2_sitelib}/waitress
+%{python2_sitelib}/waitress-%{version}-py2.?.egg-info
 
 %files -n python3-waitress
 %doc README.rst CHANGES.txt COPYRIGHT.txt LICENSE.txt docs
@@ -101,6 +101,10 @@ popd
 
 
 %changelog
+
+* Mon Jul 14 2014 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.9-4
+- Fix comment in %description about versioned directory for docs
+- Use __python2 macro instead of __python
 
 * Sat Jun 14 2014 Lorenzo Gil Sanchez <lorenzo.gil.sanchez@gmail.com> - 0.8.9-3
 - Run the tests with nose to avoid unclosed socket errors
