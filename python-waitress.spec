@@ -1,4 +1,8 @@
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
+%if 0%{?fedora}
+%global with_python3 1
+%endif
+
 
 Name:           python-waitress
 Version:        0.8.9
@@ -27,6 +31,7 @@ It supports HTTP/1.0 and HTTP/1.1.
 For more information, see %{_pkgdocdir}/docs or
 http://docs.pylonsproject.org/projects/waitress/en/latest/ .
 
+%if 0%{?with_python3}
 %package -n python3-waitress
 Summary:        Waitress WSGI server
 Requires:       python3
@@ -46,6 +51,7 @@ It supports HTTP/1.0 and HTTP/1.1.
 
 For more information, see %{_pkgdocdir}/docs or
 http://docs.pylonsproject.org/projects/waitress/en/latest/ .
+%endif
 
 %prep
 %setup -q -n waitress-%{version}
@@ -54,23 +60,29 @@ rm -f .gitignore docs/.gitignore
 # this script has devel paths, not useful in a user system
 rm -f docs/rebuild
 
+%if 0%{?with_python3}
 rm -rf %{py3dir}
 cp -a . %{py3dir}
+%endif
 
 
 %build
 %{__python2} setup.py build
 
+%if 0%{?with_python3}
 pushd %{py3dir}
 %{__python3} setup.py build
 popd
+%endif
 
 %install
 # Run the Python 3 install first so that the Python 2 version
 # of /usr/bin/waitress-server "wins":
+%if 0%{?with_python3}
 pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root $RPM_BUILD_ROOT
 popd
+%endif
 
 %{__python2} setup.py install --skip-build --root $RPM_BUILD_ROOT
 
@@ -83,9 +95,11 @@ popd
 # in develop mode here.
 PYTHONPATH=. %{__python2} setup.py nosetests
 
+%if 0%{?with_python3}
 pushd %{py3dir}
 PYTHONPATH=. %{__python3} setup.py nosetests
 popd
+%endif
 
 
 %files
@@ -94,10 +108,12 @@ popd
 %{python2_sitelib}/waitress
 %{python2_sitelib}/waitress-%{version}-py2.?.egg-info
 
+%if 0%{?with_python3}
 %files -n python3-waitress
 %doc README.rst CHANGES.txt COPYRIGHT.txt LICENSE.txt docs
 %{python3_sitelib}/waitress
 %{python3_sitelib}/waitress-%{version}-py3.?.egg-info
+%endif
 
 
 %changelog
